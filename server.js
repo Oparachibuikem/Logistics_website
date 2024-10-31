@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser"; // Add body-parser to parse form
-import path from "path";
+// import path from "path";
 
 // Initialize express
 const app = express();
@@ -123,9 +123,9 @@ app.put("/api/admin/update-location/:trackingId", (req, res) => {
   }
 });
 
-app.get("*", (req, res) => {
-  res.sendFile(path.resolve("index.html"));
-});
+// app.get("*", (req, res) => {
+//   res.sendFile(path.resolve("index.html"));
+// });
 
 // Start the server
 app.listen(PORT, () => {
