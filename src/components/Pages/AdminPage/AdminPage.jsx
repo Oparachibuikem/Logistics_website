@@ -49,10 +49,7 @@ const AdminPage = () => {
     };
 
     try {
-      const response = await axios.post(
-        "https://logistics-website-hvug.onrender.com/",
-        trackingData
-      );
+      const response = await axios.post("http://localhost:5000", trackingData);
 
       if (response.data.trackingId) {
         setTrackingId(response.data.trackingId);
