@@ -28,6 +28,8 @@ const AdminPage = () => {
   const [newCurrentLocation, setNewCurrentLocation] = useState(""); // New location
   const [fetchedData, setFetchedData] = useState(null); // Stores fetched tracking data
 
+  const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
+
   // Function to generate tracking ID
   const handleGenerateTracking = async () => {
     const trackingData = {
@@ -49,7 +51,10 @@ const AdminPage = () => {
     };
 
     try {
-      const response = await axios.post("http://localhost:5000", trackingData);
+      const response = await axios.post(
+        `${apiBaseUrl}/api/admin/generate-tracking`,
+        trackingData
+      );
 
       if (response.data.trackingId) {
         setTrackingId(response.data.trackingId);
@@ -67,7 +72,7 @@ const AdminPage = () => {
   const fetchTrackingData = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/tracking/${editTrackingId}`
+        `${apiBaseUrl}/api/tracking/${editTrackingId}`
       );
       setFetchedData(response.data);
       setNewCurrentLocation(response.data.currentLocation);
@@ -85,7 +90,7 @@ const AdminPage = () => {
 
     try {
       const response = await axios.put(
-        `http://localhost:5000/api/admin/update-location/${editTrackingId}`,
+        `${apiBaseUrl}/api/admin/update-location/${editTrackingId}`,
         { currentLocation: newCurrentLocation } // Use the correct state variable
       );
 
@@ -271,12 +276,16 @@ const AdminPage = () => {
       {fetchedData && (
         <div className="location-update-section">
           <h3>Edit Current Location</h3>
-          <input
-            type="text"
-            value={newCurrentLocation}
-            onChange={(e) => setNewCurrentLocation(e.target.value)}
-          />
-          <button onClick={handleUpdateLocation}>Update Location</button>
+          <p>Current location: {fetchedData.currentLocation}</p>
+          <form onSubmit={handleUpdateLocation}>
+            <input
+              type="text"
+              placeholder="Enter New Location"
+              value={newCurrentLocation}
+              onChange={(e) => setNewCurrentLocation(e.target.value)}
+            />
+            <button type="submit">Update Location</button>
+          </form>
         </div>
       )}
     </div>
