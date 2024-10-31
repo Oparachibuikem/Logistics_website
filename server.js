@@ -122,6 +122,9 @@ app.put("/api/admin/update-location/:trackingId", (req, res) => {
     res.status(404).json({ message: "Tracking ID not found" });
   }
 });
+app.get("/", (req, res) => {
+  res.send("Server is up and running!");
+});
 
 // app.get("*", (req, res) => {
 //   res.sendFile(path.resolve("index.html"));
