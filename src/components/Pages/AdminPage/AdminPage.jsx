@@ -3,6 +3,11 @@ import "./AdminPage.scss";
 import axios from "axios";
 
 const AdminPage = () => {
+  useEffect(() => {
+    // Log the environment variable when the component loads
+    console.log("API Base URL:", import.meta.env.VITE_API_BASE_URL);
+  }, []);
+
   // State for generating tracking ID
   const [fromFullName, setFromFullName] = useState("");
   const [fromEmail, setFromEmail] = useState("");
