@@ -3,9 +3,10 @@ import "./AdminPage.scss";
 import axios from "axios";
 
 const AdminPage = () => {
+  const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
   useEffect(() => {
     // Log the environment variable when the component loads
-    console.log("API Base URL:", import.meta.env.VITE_API_BASE_URL);
+    console.log("API Base URL:", `$(apiBaseUrl)`);
   }, []);
 
   // State for generating tracking ID
@@ -32,8 +33,6 @@ const AdminPage = () => {
   const [editTrackingId, setEditTrackingId] = useState(""); // Tracking ID to edit location
   const [newCurrentLocation, setNewCurrentLocation] = useState(""); // New location
   const [fetchedData, setFetchedData] = useState(null); // Stores fetched tracking data
-
-  const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
 
   // Function to generate tracking ID
   const handleGenerateTracking = async () => {
