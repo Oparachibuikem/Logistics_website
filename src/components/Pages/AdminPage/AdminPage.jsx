@@ -3,7 +3,7 @@ import "./AdminPage.scss";
 import axios from "axios";
 
 const AdminPage = () => {
-  const apiBaseUrl = "https://logistics-website-hvug.onrender.com";
+  const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
   // const apiBaseUrl = `${import.meta.env.VITE_API_BASE_URL || "https://your-backup-url.com"}/api/admin/generate-tracking`;
 
   useEffect(() => {
