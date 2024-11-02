@@ -7,8 +7,15 @@ import bodyParser from "body-parser"; // Add body-parser to parse form
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+const corsOptions = {
+  origin: "https://nimble-cargo.netlify.app/", // replace with your frontend domain
+  methods: "GET,POST,PUT,DELETE,OPTIONS",
+  allowedHeaders: "Content-Type, Authorization",
+  optionsSuccessStatus: 200, // for legacy browsers
+};
+
 // Middleware
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(express.json());
 app.options("*", cors()); // This will handle all OPTIONS requests
 app.use(bodyParser.urlencoded({ extended: true })); // Add this to handle form data
