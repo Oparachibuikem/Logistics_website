@@ -8,14 +8,16 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 const corsOptions = {
-  origin: "https://nimble-cargo.netlify.app/", // replace with your frontend domain
-  methods: "GET,POST,PUT,DELETE,OPTIONS",
-  allowedHeaders: "Content-Type, Authorization",
-  optionsSuccessStatus: 200, // for legacy browsers
+  origin: "https://nimble-cargo.netlify.app", // Ensure no trailing slash
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  optionsSuccessStatus: 200, // For legacy browsers
 };
 
+app.use(cors(corsOptions)); // Apply CORS with options
+app.options("*", cors(corsOptions)); // Handle OPTIONS requests
+
 // Middleware
-app.use(cors(corsOptions));
 app.use(express.json());
 app.options("*", cors()); // This will handle all OPTIONS requests
 app.use(bodyParser.urlencoded({ extended: true })); // Add this to handle form data
