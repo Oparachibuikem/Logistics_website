@@ -6,6 +6,8 @@ import { Navbar } from "../../Navbar/Navbar";
 import { Hero } from "../../Hero/Hero";
 
 const TrackingPage = () => {
+  const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
+
   const [searchParams] = useSearchParams(); // Used to read the trackingId from the URL
   const trackingIdFromURL = searchParams.get("trackingId"); // Retrieve the 'trackingId' from the URL
 
@@ -37,7 +39,7 @@ const TrackingPage = () => {
 
       // Send a GET request to fetch tracking info
       const response = await axios.get(
-        `http://localhost:5000/api/tracking/${trimmedTrackingId}`
+        `${apiBaseUrl}/api/tracking/${trimmedTrackingId}`
       );
 
       // Update the state with the received tracking info
