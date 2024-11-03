@@ -6,7 +6,7 @@ import { Navbar } from "../../Navbar/Navbar";
 import { Hero } from "../../Hero/Hero";
 
 const TrackingPage = () => {
-  const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
+  const apiBaseUrl = "https://logistics-website-hvug.onrender.com";
 
   const [searchParams] = useSearchParams(); // Used to read the trackingId from the URL
   const trackingIdFromURL = searchParams.get("trackingId"); // Retrieve the 'trackingId' from the URL
